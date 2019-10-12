@@ -6,20 +6,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Menu extends JFrame implements ActionListener {
-    private static JFrame f;
-    private static JTextField textField_1, textField_2, textField_3, textField_4;
-    private static JButton button1, button2, button3, button4, button5, button6;
-    private static float number1, number2, number3, result;
-    private static int operator;
-    private static Border blackline;
-    private static Border emptyBorder;
-    private static Font font = new Font("Britannic Bold", Font.PLAIN, 14);
+public class Menu extends JFrame {
+    protected JFrame f;
+    protected JTextField textField_1, textField_2, textField_3, textField_4;
+    protected JButton button1, button2, button3, button4, button5, button6;
+    protected float number1, number2, number3, result;
+    protected int operator;
+    protected Border blackline;
+    protected Border emptyBorder;
+    protected Font font = new Font("Britannic Bold", Font.PLAIN, 14);
 
     public Menu(){
         f = new JFrame("Button Example");
         blackline = BorderFactory.createLineBorder(Color.black);
         emptyBorder = BorderFactory.createEmptyBorder();
+
+        Action action = new Action(this);
 
         //enter name label
         JLabel labe1_1 = new JLabel();
@@ -73,7 +75,7 @@ public class Menu extends JFrame implements ActionListener {
         button1 = new JButton("Result");
         button1.setBounds(20,260,225, 40);
         button1.setBackground(Color.ORANGE);
-        button1.addActionListener(this);
+        button1.addActionListener(action);
         button1.setBorder(blackline);
         button1.setFont(font);
 
@@ -82,7 +84,7 @@ public class Menu extends JFrame implements ActionListener {
         button2.setBounds(20,200,45, 45);
         button2.setForeground(Color.white);
         button2.setBackground(Color.DARK_GRAY);
-        button2.addActionListener(this);
+        button2.addActionListener(action);
         button2.setBorder(blackline);
         button2.setFont(font);
 
@@ -91,7 +93,7 @@ public class Menu extends JFrame implements ActionListener {
         button3.setBounds(80,200,45, 45);
         button3.setForeground(Color.white);
         button3.setBackground(Color.DARK_GRAY);
-        button3.addActionListener(this);
+        button3.addActionListener(action);
         button3.setBorder(blackline);
         button3.setFont(font);
 
@@ -100,7 +102,7 @@ public class Menu extends JFrame implements ActionListener {
         button4.setBounds(140,200,45, 45);
         button4.setForeground(Color.white);
         button4.setBackground(Color.DARK_GRAY);
-        button4.addActionListener(this);
+        button4.addActionListener(action);
         button4.setBorder(blackline);
         button4.setFont(font);
 
@@ -109,7 +111,7 @@ public class Menu extends JFrame implements ActionListener {
         button5.setBounds(200,200,45, 45);
         button5.setForeground(Color.white);
         button5.setBackground(Color.DARK_GRAY);
-        button5.addActionListener(this);
+        button5.addActionListener(action);
         button5.setBorder(blackline);
         button5.setFont(font);
 
@@ -117,7 +119,7 @@ public class Menu extends JFrame implements ActionListener {
         button6 = new JButton("C");
         button6.setBounds(260,200,45, 100);
         button6.setBackground(Color.ORANGE);
-        button6.addActionListener(this);
+        button6.addActionListener(action);
         button6.setBorder(blackline);
         button6.setFont(font);
 
@@ -148,84 +150,5 @@ public class Menu extends JFrame implements ActionListener {
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.show();
     }
-
-    public void actionPerformed(ActionEvent e){
-
-        if(e.getSource()==button2){
-            number1 = Integer.parseInt(textField_1.getText());
-            number2 = Integer.parseInt(textField_2.getText());
-            number3 = Integer.parseInt(textField_3.getText());
-            operator = 1;
-            textField_4.setText(number1 + " + " + number2 + " + " + number3  + " = ");
-        }
-
-        if(e.getSource() == button3){
-            number1 = Integer.parseInt(textField_1.getText());
-            number2 = Integer.parseInt(textField_2.getText());
-            number3 = Integer.parseInt(textField_3.getText());
-            operator = 2;
-            textField_4.setText(number1 + " - " + number2 + " - " + number3 + " = ");
-        }
-
-        if(e.getSource() == button4){
-            number1 = Integer.parseInt(textField_1.getText());
-            number2 = Integer.parseInt(textField_2.getText());
-            number3 = Integer.parseInt(textField_3.getText());
-            textField_4.setText(number1 + " / " + number2 + " / " + number3 + " = ");
-            operator = 3;
-        }
-
-        if(e.getSource() == button5){
-            number1 = Integer.parseInt(textField_1.getText());
-            number2 = Integer.parseInt(textField_2.getText());
-            number3 = Integer.parseInt(textField_3.getText());
-            textField_4.setText(number1 + " * " + number2 + " * " + number3 + " = ");
-            operator = 4;
-        }
-
-        if(e.getSource() == button6){
-            number1 = 0;
-            number2 = 0;
-            number3 = 0;
-            result = 0;
-            textField_4.setText("");
-            operator = 5;
-        }
-
-        if(e.getSource() == button1)
-        {
-            switch(operator)
-            {
-                case 1:
-                    result = number1 + number2 + number3;
-                    textField_4.setText(number1 + " + " + number2 + " + " + number3  + " = " + result);
-                    break;
-
-                case 2:
-                    result = number1 - number2 - number3;
-                    textField_4.setText(number1 + " - " + number2 + " - " + number3 + " = " + result);
-                    break;
-
-                case 3:
-                    result = number1 / number2 / number3;
-                    textField_4.setText(number1 + " / " + number2 + " / " + number3 + " = " + result);
-                    break;
-
-                case 4:
-                    result = number1 * number2 * number3;
-                    textField_4.setText(number1 + " * " + number2 + " * " + number3 + " = " + result);
-                    break;
-
-                case 5:
-                    textField_4.setText("");
-                    break;
-
-
-                default: result = 0;
-            }
-        }
-
-    }
-
 }
 

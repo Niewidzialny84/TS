@@ -1,12 +1,12 @@
 package data;
 
 public class Data {
-    private operation operation;
+    private Operation operation;
     private float[] numbers;
-    private byte status;
+    private Status status;
     private byte session;
 
-    public Data(operation operation, float[] numbers, byte status, byte session) {
+    public Data(Operation operation, float[] numbers, Status status, byte session) {
         this.operation = operation;
         this.numbers = numbers;
         this.status = status;
@@ -17,11 +17,11 @@ public class Data {
         this.numbers = new float[3];
     }
 
-    public operation getOperation() {
+    public Operation getOperation() {
         return operation;
     }
 
-    public void setOperation(operation operation) {
+    public void setOperation(Operation operation) {
         this.operation = operation;
     }
 
@@ -33,11 +33,11 @@ public class Data {
         this.numbers = numbers;
     }
 
-    public byte getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(byte status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

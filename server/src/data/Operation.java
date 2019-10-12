@@ -1,13 +1,13 @@
 package data;
 
-public enum operation {
+public enum Operation {
     ADD((byte)0),
     SUB((byte)1),
     DIV((byte)2),
     MUL((byte)3),
     ERR((byte)127);
     private byte Byte;
-    operation(byte Byte) {
+    Operation(byte Byte) {
         this.Byte = Byte;
     }
 
@@ -16,18 +16,18 @@ public enum operation {
     }
     public void setByte(byte Byte) { this.Byte = Byte; }
 
-    public static operation getOperation(byte Byte) {
+    public static Operation getOperation(byte Byte) {
         switch (Byte) {
             case 0:
-                return operation.ADD;
+                return Operation.ADD;
             case 1:
-                return operation.SUB;
+                return Operation.SUB;
             case 2:
-                return operation.DIV;
+                return Operation.DIV;
             case 3:
-                return operation.MUL;
+                return Operation.MUL;
             default:
-                return operation.ERR;
+                return Operation.ERR;
         }
     }
 }
