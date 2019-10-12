@@ -36,8 +36,9 @@ public class Client {
                 System.out.println(data.getSession()+"  "+ n[0]+" "+n[1]+" "+n[2]);
 
                 if(data.getStatus() == Status.CORRECT) {
-                    data.setNumbers(new float[]{1,2.75f,3});
+                    data.setNumbers(new float[]{1.1f,-1.1f,3});
                     data.setStatus(Status.RESPONSE);
+                    data.setOperation(Operation.ADD);
                     stream.write(Package.pack(data));
                     inputStream.read(a);
                     data = (Package.unpack(a));

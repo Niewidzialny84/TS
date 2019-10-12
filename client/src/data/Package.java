@@ -1,5 +1,7 @@
 package data;
 
+import java.nio.ByteBuffer;
+
 public class Package {
     public static byte[] pack(Data data) {
         byte[] tab = new byte[14];
@@ -37,13 +39,14 @@ public class Package {
         int[] numbers = new int[3];
 
         tmp.setOperation(Operation.getOperation((byte)((data[0] >>> 6) & 0x3)));
-        numbers[0] = ((data[0] << 26))| ((data[1] << 18)) | (data[2] << 10) | (data[3] << 2) | ((data[4] >>> 6) & 0x3);
-        numbers[1] = (data[4] << 26) | (data[5] << 18) | (data[6] << 10) | (data[7] << 2) | ((data[8] >>> 6) & 0x3);
-        numbers[2] = (data[8] << 26) | (data[9] << 18) | (data[10] << 10) | (data[11] << 2) | ((data[12] >>> 6) & 0x3);
+        numbers[0] = (((data[0] & 0x3f) << 26)) | ((data[1] & 0xff)<< 18 )| ((data[2] & 0xff) << 10) | ((data[3] & 0xff)<< 2) | ((data[4] >>> 6) & 0x3);
+        numbers[1] = (((data[4] & 0x3f) << 26)) | ((data[5] & 0xff)<< 18) | ((data[6]& 0xff) << 10) | ((data[7]& 0xff) << 2) | ((data[8] >>> 6) & 0x3);
+        numbers[2] = ((data[8] & 0x3f) << 26) | ((data[9]& 0xff) << 18) | ((data[10] & 0xff)<< 10) | ((data[11]& 0xff) << 2) | ((data[12] >>> 6) & 0x3);
 
         float[] n = new float[3];
         for(int i =0;i<3;i++) {
             n[i] = Float.intBitsToFloat(numbers[i]);
+           // System.out.println(Integer.toBinaryString(numbers[i]));
         }
         tmp.setNumbers(n);
 

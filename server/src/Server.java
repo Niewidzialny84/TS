@@ -22,7 +22,7 @@ public class Server {
                 d.read(head);
                 Data data = Package.unpack(head);
                 float[] a = data.getNumbers();
-                System.out.println(data.getOperation()+" "+a[0] + " " + a[1] + " " + a[2] + " " + data.getStatus() + " " + data.getSession());
+                System.out.println(head[0]+" "+data.getOperation()+" "+a[0] + " " + a[1] + " " + a[2] + " " + data.getStatus() + " " + data.getSession());
 
                 a = new float[]{a[0]+a[1]+a[2],0,0};
                 DataOutputStream o = new DataOutputStream(s.getOutputStream());
@@ -31,7 +31,7 @@ public class Server {
                 d.read(head);
                 data = Package.unpack(head);
                 a = data.getNumbers();
-                System.out.println(data.getOperation()+" "+a[0] + " " + a[1] + " " + a[2] + " " + data.getStatus() + " " + data.getSession());
+                System.out.println(head[0]+" "+data.getOperation()+" "+a[0] + " " + a[1] + " " + a[2] + " " + data.getStatus() + " " + data.getSession());
 
                 o.write(Package.pack(new Data(data.getOperation(),a, Status.CORRECT,data.getSession())));
 
