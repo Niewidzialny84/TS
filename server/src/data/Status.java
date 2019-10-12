@@ -21,12 +21,13 @@ public enum Status {
         switch (Byte) {
             case 0:
                 return Status.CORRECT;
-            case 1:
-                return Status.INVALID_SESSION;
             case 2:
-                return Status.SESSION_KEY;
+                return Status.INVALID_SESSION;
             case 3:
+                return Status.SESSION_KEY;
+            case 4:
                 return Status.RESPONSE;
+            case 1:
             default:
                 return Status.ERROR;
         }

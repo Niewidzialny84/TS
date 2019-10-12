@@ -37,7 +37,7 @@ public class Package {
         int[] numbers = new int[3];
 
         tmp.setOperation(Operation.getOperation((byte)((data[0] >>> 6) & 0x3)));
-        numbers[0] = (data[0] << 26) | (data[1] << 18) | (data[2] << 10) | (data[3] << 2) | ((data[4] >>> 6) & 0x3);
+        numbers[0] = ((data[0] << 26))| ((data[1] << 18)) | (data[2] << 10) | (data[3] << 2) | ((data[4] >>> 6) & 0x3);
         numbers[1] = (data[4] << 26) | (data[5] << 18) | (data[6] << 10) | (data[7] << 2) | ((data[8] >>> 6) & 0x3);
         numbers[2] = (data[8] << 26) | (data[9] << 18) | (data[10] << 10) | (data[11] << 2) | ((data[12] >>> 6) & 0x3);
 
@@ -47,7 +47,7 @@ public class Package {
         }
         tmp.setNumbers(n);
 
-        tmp.setStatus(Status.getStatus ((byte)((data[12] >>> 2) & 0xf)));
+        tmp.setStatus(Status.getStatus (((byte)((data[12] >>> 2) & 0xf))));
         tmp.setSession((byte)(((data[12] << 4) & 0x30 ) | (data[13] >>> 4)));
         return tmp;
     }

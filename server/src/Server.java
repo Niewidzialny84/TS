@@ -1,5 +1,6 @@
 import data.Data;
 import data.Package;
+import data.Status;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -25,11 +26,15 @@ public class Server {
 
                 a = new float[]{a[0]+a[1]+a[2],0,0};
                 DataOutputStream o = new DataOutputStream(s.getOutputStream());
-                o.write(Package.pack(new Data(data.getOperation(),a,data.getStatus(),data.getSession())));
-                //Echoer echoer = new Echoer(serverSocket.accept(), clientNum);
-                
-                //echoer.start();
-                //System.out.println(echoer.getStackTrace());
+                o.write(Package.pack(new Data(data.getOperation(),a, Status.CORRECT,data.getSession())));
+
+                d.read(head);
+                data = Package.unpack(head);
+                a = data.getNumbers();
+                System.out.println(data.getOperation()+" "+a[0] + " " + a[1] + " " + a[2] + " " + data.getStatus() + " " + data.getSession());
+
+                o.write(Package.pack(new Data(data.getOperation(),a, Status.CORRECT,data.getSession())));
+
                 clientNum++;
             }
         }catch(IOException e){
