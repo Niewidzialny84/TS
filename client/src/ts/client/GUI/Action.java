@@ -76,50 +76,7 @@ public class Action implements ActionListener {
             menu.number3 = 0;
             menu.result = 0;
             menu.textField_4.setText("");
-            menu.operator = 5;
         }
-
-        /*
-        if(e.getSource() == menu.button1)
-        {
-            try {
-                switch (menu.operator) {
-                    case 1:
-                        Client.output.write(Package.pack(new Data(Operation.ADD, new float[]{menu.number1, menu.number2, menu.number3}, Status.CORRECT, (byte) 0)));
-                        byte[] bytes = new byte[14];
-                        Client.input.read(bytes);
-                        Data d = Package.unpack(bytes);
-                        menu.result = d.getNumbers()[0];
-                        menu.textField_4.setText(menu.number1 + " + " + menu.number2 + " + " + menu.number3 + " = " + menu.result);
-                        break;
-
-                    case 2:
-                        menu.result = menu.number1 - menu.number2 - menu.number3;
-                        menu.textField_4.setText(menu.number1 + " - " + menu.number2 + " - " + menu.number3 + " = " + menu.result);
-                        break;
-
-                    case 3:
-                        menu.result = menu.number1 / menu.number2 / menu.number3;
-                        menu.textField_4.setText(menu.number1 + " / " + menu.number2 + " / " + menu.number3 + " = " + menu.result);
-                        break;
-
-                    case 4:
-                        menu.result = menu.number1 * menu.number2 * menu.number3;
-                        menu.textField_4.setText(menu.number1 + " * " + menu.number2 + " * " + menu.number3 + " = " + menu.result);
-                        break;
-
-                    case 5:
-                        menu.textField_4.setText("");
-                        break;
-                    default:
-                        menu.result = 0;
-                }
-            }catch (IOException exception) {
-                System.out.println(exception.getMessage());
-            }
-        }
-
-         */
     }
 
     private void run(Operation operation) {

@@ -41,17 +41,6 @@ public class Package {
         numbers[1] = (((data[4] & 0x3f) << 26)) | ((data[5] & 0xff)<< 18) | ((data[6]& 0xff) << 10) | ((data[7]& 0xff) << 2) | ((data[8] >>> 6) & 0x3);
         numbers[2] = ((data[8] & 0x3f) << 26) | ((data[9]& 0xff) << 18) | ((data[10] & 0xff)<< 10) | ((data[11]& 0xff) << 2) | ((data[12] >>> 6) & 0x3);
 
-        /*
-        byte[] bytes= new byte[4];
-        bytes[0] = (byte)((ts.server.data[0] << 2)|ts.server.data[1] >>> 6);
-        bytes[1] = (byte)((ts.server.data[1] << 2)|ts.server.data[2] >>> 6);
-        bytes[2] = (byte)((ts.server.data[2] << 2)|ts.server.data[3] >>> 6);
-        bytes[3] = (byte)((ts.server.data[3] << 2)|ts.server.data[4] >>> 6);
-        ByteBuffer buffer = ByteBuffer.wrap(bytes);
-        for(byte d : bytes) System.out.println(d+" "+Byte.hashCode(d));
-        System.out.println(buffer.getFloat());
-        */
-
         float[] n = new float[]{0,0,0};
         for(int i =0;i<3;i++) {
             n[i] = Float.intBitsToFloat(numbers[i]);

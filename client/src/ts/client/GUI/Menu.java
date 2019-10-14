@@ -7,7 +7,8 @@ import java.awt.*;
 public class Menu extends JFrame {
     protected JFrame f;
     protected JTextField textField_1, textField_2, textField_3, textField_4;
-    protected JButton button1, button2, button3, button4, button5, button6;
+    protected JButton button2, button3, button4, button5, button6;
+    //protected JButton button1;
     protected float number1, number2, number3, result;
     protected int operator;
     protected Border blackline;
@@ -70,12 +71,12 @@ public class Menu extends JFrame {
         //textField_4.setEditable(false);
 
         //Result button
-        button1 = new JButton("Result");
-        button1.setBounds(20,260,225, 40);
-        button1.setBackground(Color.ORANGE);
-        button1.addActionListener(action);
-        button1.setBorder(blackline);
-        button1.setFont(font);
+      //  button1 = new JButton("Result");
+      //  button1.setBounds(20,260,225, 40);
+      //  button1.setBackground(Color.ORANGE);
+      //  button1.addActionListener(action);
+      //  button1.setBorder(blackline);
+      //  button1.setFont(font);
 
         //+ button
         button2 = new JButton("+");
@@ -136,7 +137,7 @@ public class Menu extends JFrame {
         f.add(button3);
         f.add(button5);
         f.add(button6);
-        f.add(button1);
+       // f.add(button1);
         f.add(labe1_4);
         f.add(textField_4);
 
