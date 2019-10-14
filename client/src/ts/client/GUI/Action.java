@@ -41,9 +41,9 @@ public class Action implements ActionListener {
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==menu.button2){
-            menu.number1 = Integer.parseInt(menu.textField_1.getText());
-            menu.number2 = Integer.parseInt(menu.textField_2.getText());
-            menu.number3 = Integer.parseInt(menu.textField_3.getText());
+            menu.number1 = Float.parseFloat(menu.textField_1.getText());
+            menu.number2 = Float.parseFloat(menu.textField_2.getText());
+            menu.number3 = Float.parseFloat(menu.textField_3.getText());
             //menu.operator = 1;
             menu.textField_4.setText(menu.number1 + " + " + menu.number2 + " + " + menu.number3  + " = ");
             menu.sign1.setText("+");
@@ -55,9 +55,9 @@ public class Action implements ActionListener {
         }
 
         if(e.getSource() == menu.button3){
-            menu.number1 = Integer.parseInt(menu.textField_1.getText());
-            menu.number2 = Integer.parseInt(menu.textField_2.getText());
-            menu.number3 = Integer.parseInt(menu.textField_3.getText());
+            menu.number1 = Float.parseFloat(menu.textField_1.getText());
+            menu.number2 = Float.parseFloat(menu.textField_2.getText());
+            menu.number3 = Float.parseFloat(menu.textField_3.getText());
            // menu.operator = 2;
             menu.textField_4.setText(menu.number1 + " - " + menu.number2 + " - " + menu.number3 + " = ");
             menu.sign1.setText("-");
@@ -69,9 +69,9 @@ public class Action implements ActionListener {
         }
 
         if(e.getSource() == menu.button4){
-            menu.number1 = Integer.parseInt(menu.textField_1.getText());
-            menu.number2 = Integer.parseInt(menu.textField_2.getText());
-            menu.number3 = Integer.parseInt(menu.textField_3.getText());
+            menu.number1 = Float.parseFloat(menu.textField_1.getText());
+            menu.number2 = Float.parseFloat(menu.textField_2.getText());
+            menu.number3 = Float.parseFloat(menu.textField_3.getText());
             menu.textField_4.setText(menu.number1 + " / " + menu.number2 + " / " + menu.number3 + " = ");
             //menu.operator = 3;
             menu.sign1.setText("/");
@@ -83,9 +83,9 @@ public class Action implements ActionListener {
         }
 
         if(e.getSource() == menu.button5){
-            menu.number1 = Integer.parseInt(menu.textField_1.getText());
-            menu.number2 = Integer.parseInt(menu.textField_2.getText());
-            menu.number3 = Integer.parseInt(menu.textField_3.getText());
+            menu.number1 = Float.parseFloat(menu.textField_1.getText());
+            menu.number2 = Float.parseFloat(menu.textField_2.getText());
+            menu.number3 = Float.parseFloat(menu.textField_3.getText());
             menu.textField_4.setText(menu.number1 + " * " + menu.number2 + " * " + menu.number3 + " = ");
             //menu.operator = 4;
             menu.sign1.setText("*");
