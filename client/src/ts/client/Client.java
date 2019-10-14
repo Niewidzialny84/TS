@@ -34,35 +34,6 @@ public class Client {
 
                 Menu menu = new Menu();
             }
-
-            /*while(socket.isConnected() && !Action.exit) {
-                Data ts.server.data = new Data(Operation.MUL,new float[]{0,0,0}, Status.SESSION_KEY ,(byte)0);
-                output = new DataOutputStream(socket.getOutputStream());
-                input = new DataInputStream(socket.getInputStream());
-
-                output.write(Package.pack(ts.server.data));
-
-                byte[] a = new byte[14];
-                input.read(a);
-                ts.server.data = Package.unpack(a);
-                float[] n = ts.server.data.getNumbers();
-                System.out.println(ts.server.data.getSession()+" "+ts.server.data.getStatus());
-
-                if(ts.server.data.getStatus() == Status.CORRECT) {
-
-                    ts.server.data.setNumbers(new float[]{1.996f,-1.1f,3});
-                    ts.server.data.setStatus(Status.RESPONSE);
-                    ts.server.data.setOperation(Operation.ADD);
-                    output.write(Package.pack(ts.server.data));
-                    input.read(a);
-                    ts.server.data = (Package.unpack(a));
-                } else if(ts.server.data.getStatus() == Status.INVALID_SESSION) {
-                    session = ts.server.data.getSession();
-                }
-
-             //   n = ts.server.data.getNumbers();
-             //   System.out.println(ts.server.data.getSession()+"  "+ n[0]+" "+n[1]+" "+n[2]);
-            } */
         } catch (IOException e) {
             System.out.println("ts.client.Client Error: " + e.getMessage());
 

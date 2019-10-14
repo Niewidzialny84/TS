@@ -22,6 +22,9 @@ public class Action implements ActionListener {
             @Override
             public void windowClosing(WindowEvent e) {
                 try {
+                    Client.socket.setKeepAlive(false);
+                    Client.socket.shutdownInput();
+                    Client.socket.shutdownOutput();
                     Client.socket.close();
                 } catch(IOException w) {
                     System.out.println("Exit err "+w.getMessage());
