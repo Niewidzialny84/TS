@@ -1,4 +1,4 @@
-package data;
+package ts.client.data;
 
 public class Data {
     private Operation operation;

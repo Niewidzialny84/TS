@@ -1,4 +1,4 @@
-package data;
+package ts.server.data;
 
 public enum Operation {
     ADD((byte)0),

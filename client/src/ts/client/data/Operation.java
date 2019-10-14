@@ -1,4 +1,4 @@
-package data;
+package ts.client.data;
 
 public enum Operation {
     ADD((byte)0),

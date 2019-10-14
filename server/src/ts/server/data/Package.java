@@ -1,6 +1,4 @@
-package data;
-
-import java.nio.ByteBuffer;
+package ts.server.data;
 
 public class Package {
     public static byte[] pack(Data data) {
@@ -36,21 +34,32 @@ public class Package {
 
     public static Data unpack(byte[] data) {
         Data tmp = new Data();
-        int[] numbers = new int[3];
+        int[] numbers = new int[]{0,0,0};
 
         tmp.setOperation(Operation.getOperation((byte)((data[0] >>> 6) & 0x3)));
         numbers[0] = (((data[0] & 0x3f) << 26)) | ((data[1] & 0xff)<< 18 )| ((data[2] & 0xff) << 10) | ((data[3] & 0xff)<< 2) | ((data[4] >>> 6) & 0x3);
         numbers[1] = (((data[4] & 0x3f) << 26)) | ((data[5] & 0xff)<< 18) | ((data[6]& 0xff) << 10) | ((data[7]& 0xff) << 2) | ((data[8] >>> 6) & 0x3);
         numbers[2] = ((data[8] & 0x3f) << 26) | ((data[9]& 0xff) << 18) | ((data[10] & 0xff)<< 10) | ((data[11]& 0xff) << 2) | ((data[12] >>> 6) & 0x3);
 
-        float[] n = new float[3];
+        /*
+        byte[] bytes= new byte[4];
+        bytes[0] = (byte)((ts.server.data[0] << 2)|ts.server.data[1] >>> 6);
+        bytes[1] = (byte)((ts.server.data[1] << 2)|ts.server.data[2] >>> 6);
+        bytes[2] = (byte)((ts.server.data[2] << 2)|ts.server.data[3] >>> 6);
+        bytes[3] = (byte)((ts.server.data[3] << 2)|ts.server.data[4] >>> 6);
+        ByteBuffer buffer = ByteBuffer.wrap(bytes);
+        for(byte d : bytes) System.out.println(d+" "+Byte.hashCode(d));
+        System.out.println(buffer.getFloat());
+        */
+
+        float[] n = new float[]{0,0,0};
         for(int i =0;i<3;i++) {
             n[i] = Float.intBitsToFloat(numbers[i]);
-           // System.out.println(Integer.toBinaryString(numbers[i]));
+         //   System.out.println(Integer.toBinaryString(numbers[i]));
         }
         tmp.setNumbers(n);
 
-        tmp.setStatus(Status.getStatus (((byte)((data[12] >>> 2) & 0xf))));
+        tmp.setStatus(Status.getStatus(((byte)((data[12] >>> 2) & 0xf))));
         tmp.setSession((byte)(((data[12] << 4) & 0x30 ) | (data[13] >>> 4)));
         return tmp;
     }

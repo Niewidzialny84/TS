@@ -1,4 +1,4 @@
-package data;
+package ts.client.data;
 
 public enum Status {
     CORRECT((byte) 0),

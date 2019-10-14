@@ -1,10 +1,8 @@
-package GUI;
+package ts.client.GUI;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Menu extends JFrame {
     protected JFrame f;
@@ -21,7 +19,7 @@ public class Menu extends JFrame {
         blackline = BorderFactory.createLineBorder(Color.black);
         emptyBorder = BorderFactory.createEmptyBorder();
 
-        Action action = new Action(this);
+        ts.client.GUI.Action action = new Action(this);
 
         //enter name label
         JLabel labe1_1 = new JLabel();
