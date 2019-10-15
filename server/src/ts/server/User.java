@@ -8,10 +8,8 @@ import ts.server.data.Status;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.SocketAddress;
 
 public class User extends Thread{
     private Socket socket;
@@ -27,7 +25,6 @@ public class User extends Thread{
             DataInputStream input = new DataInputStream(socket.getInputStream());
             DataOutputStream output = new DataOutputStream(socket.getOutputStream());
 
-            Data data = new Data();
             byte[] buffer = new byte[14];
 
             for(Byte i=1;i<30;i++) {
@@ -38,8 +35,11 @@ public class User extends Thread{
                 }
             }
 
+            Data data = new Data(Operation.SUB,new float[]{0,0,0}, Status.SESSION_KEY,session);
+
             if(!socket.isClosed() && !socket.isInputShutdown() && !socket.isOutputShutdown()) {
-                output.write(Package.pack(new Data(Operation.SUB,new float[]{0,0,0}, Status.SESSION_KEY,session)));
+                System.out.println(address+" | S | Session: "+data.getSession()+" -- "+data.getStatus());
+                output.write(Package.pack(data));
             }
 
             while(true) {
@@ -55,8 +55,24 @@ public class User extends Thread{
                     throw new IOException("Normal close");
                 }
 
-                data = new Data(Operation.SUB,new float[]{Calculate.calculate(data.getOperation(),data.getNumbers()),0,0},data.getStatus(),session);
-                System.out.println(address+" | S | Session: "+session+" -- "+data.getStatus()+" "+data.getNumbers()[0]);
+                Status status = Status.CORRECT;
+                float ret = 0;
+                try {
+                    ret = Calculate.calculate(data.getOperation(),data.getNumbers());
+                } catch (ArithmeticException err) {
+                    if(err.getMessage().equalsIgnoreCase("DIV")) {
+                        status = Status.NUMBER_DIV;
+                    } else if(err.getMessage().equalsIgnoreCase("INF")) {
+                        status = Status.NUMBER_INFINITE;
+                    } else if(err.getMessage().equalsIgnoreCase("NAN")) {
+                        status = Status.NUMBER_NAN;
+                    } else {
+                        status = Status.ERROR;
+                    }
+                }
+
+                data = new Data(Operation.SUB,new float[]{ret,0,0},status,session);
+                System.out.println(address+" | S | Session: "+data.getSession()+" -- "+data.getStatus()+" "+data.getNumbers()[0]);
                 output.write(Package.pack(data));
             }
         } catch (IOException w) {

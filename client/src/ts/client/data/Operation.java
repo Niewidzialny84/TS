@@ -1,9 +1,9 @@
 package ts.client.data;
 
 public enum Operation {
-    ADD((byte)0),
-    SUB((byte)1),
-    DIV((byte)2),
+    ADD((byte)2),
+    SUB((byte)0),
+    DIV((byte)1),
     MUL((byte)3),
     ERR((byte)127);
     private byte Byte;
@@ -19,11 +19,11 @@ public enum Operation {
     public static Operation getOperation(byte Byte) {
         switch (Byte) {
             case 0:
-                return Operation.ADD;
-            case 1:
                 return Operation.SUB;
-            case 2:
+            case 1:
                 return Operation.DIV;
+            case 2:
+                return Operation.ADD;
             case 3:
                 return Operation.MUL;
             default:

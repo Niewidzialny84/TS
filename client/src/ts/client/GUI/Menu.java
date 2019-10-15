@@ -109,15 +109,7 @@ public class Menu extends JFrame {
         textField_4.setFont(font);
         textField_4.setBorder(blackline);
         textField_4.setEditable(false);
-        //textField_4.setEditable(false);
-
-        //Result button
-      //  button1 = new JButton("Result");
-      //  button1.setBounds(20,260,225, 40);
-      //  button1.setBackground(Color.ORANGE);
-      //  button1.addActionListener(action);
-      //  button1.setBorder(blackline);
-      //  button1.setFont(font);
+        textField_4.setHorizontalAlignment(JTextField.RIGHT);
 
         //+ button
         button2 = new JButton("+");
