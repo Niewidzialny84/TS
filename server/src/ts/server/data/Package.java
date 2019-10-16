@@ -26,7 +26,7 @@ public class Package {
         tab[10] = (byte)(numbers[2] >>> 10);
         tab[11] = (byte)(numbers[2] >>> 2 );
         tab[12] = (byte)(numbers[2] << 6 );
-        tab[12] = (byte)(tab[12]|(data.getStatus().getByte() << 2)|data.getSession() >>> 2);
+        tab[12] = (byte)(tab[12]|(data.getStatus().getByte() << 2)|data.getSession() >>> 4);
         tab[13] = (byte)(data.getSession() << 4);
 
         return tab;

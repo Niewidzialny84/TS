@@ -46,7 +46,7 @@ public class User extends Thread{
                 input.read(buffer);
 
                 data = Package.unpack(buffer);
-                System.out.println(address+" | R | Session: "+session+" -- "+data.getStatus()+" "+data.getOperation()+" "+data.getNumbers()[0]+" "+data.getNumbers()[1]+" "+data.getNumbers()[2]);
+                System.out.println(address+" | R | Session: "+data.getSession()+" -- "+data.getStatus()+" "+data.getOperation()+" "+data.getNumbers()[0]+" "+data.getNumbers()[1]+" "+data.getNumbers()[2]);
 
                 if(data.getStatus() == Status.CLOSING) {
                     input.close();

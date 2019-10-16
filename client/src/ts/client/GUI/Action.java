@@ -41,31 +41,36 @@ public class Action implements ActionListener {
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==menu.button2){
-            parse();
-            menu.sign1.setText("+");
-            menu.sign2.setText("+");
-            run(Operation.ADD);
+            if(parse()) {
+                menu.sign1.setText("+");
+                menu.sign2.setText("+");
+                run(Operation.ADD);
+            }
         }
 
         if(e.getSource() == menu.button3){
-            parse();
-            menu.sign1.setText("-");
-            menu.sign2.setText("-");
-            run(Operation.SUB);
+            if(parse()) {
+                menu.sign1.setText("-");
+                menu.sign2.setText("-");
+                run(Operation.SUB);
+            }
         }
 
         if(e.getSource() == menu.button4){
-            parse();
-            menu.sign1.setText("/");
-            menu.sign2.setText("/");
-            run(Operation.DIV);
+            if(parse()) {
+                parse();
+                menu.sign1.setText("/");
+                menu.sign2.setText("/");
+                run(Operation.DIV);
+            }
         }
 
         if(e.getSource() == menu.button5){
-            parse();
-            menu.sign1.setText("*");
-            menu.sign2.setText("*");
-            run(Operation.MUL);
+            if(parse()) {
+                menu.sign1.setText("*");
+                menu.sign2.setText("*");
+                run(Operation.MUL);
+            }
         }
 
         if(e.getSource() == menu.button6){
