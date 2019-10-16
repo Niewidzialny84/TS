@@ -26,7 +26,7 @@ public class Package {
         tab[10] = (byte)(numbers[2] >>> 10);
         tab[11] = (byte)(numbers[2] >>> 2 );
         tab[12] = (byte)(numbers[2] << 6 );
-        tab[12] = (byte)(tab[12]|(data.getStatus().getByte() << 2)|data.getSession() >>> 4);
+        tab[12] = (byte)((tab[12] & 0b11000000)|((data.getStatus().getByte() << 2)& 0b00111100)|((data.getSession() >>> 4) & 0b0000_0011));
         tab[13] = (byte)(data.getSession() << 4);
 
         return tab;
@@ -49,7 +49,7 @@ public class Package {
         tmp.setNumbers(n);
 
         tmp.setStatus(Status.getStatus (((byte)((data[12] >>> 2) & 0xf))));
-        tmp.setSession((byte)(((data[12] << 4) & 0x30 ) | (data[13] >>> 4)));
+        tmp.setSession((byte)(((data[12] << 4) & 0x30 ) | ((data[13] & 0b11110000)>>> 4)));
         return tmp;
     }
 
