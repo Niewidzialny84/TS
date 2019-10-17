@@ -35,7 +35,7 @@ public class User extends Thread{
                 }
             }
 
-            Data data = new Data(Operation.SUB,new float[]{0,0,0}, Status.SESSION_KEY,session);
+            Data data = new Data(Operation.SUB,new int[]{0,0,0}, Status.SESSION_KEY,session);
 
             if(!socket.isClosed() && !socket.isInputShutdown() && !socket.isOutputShutdown()) {
                 System.out.println(address+" | S | Session: "+data.getSession()+" -- "+data.getStatus());
@@ -56,7 +56,8 @@ public class User extends Thread{
                 }
 
                 Status status = Status.CORRECT;
-                float ret = 0;
+           //     float ret = 0;
+                int ret = 0;
                 try {
                     ret = Calculate.calculate(data.getOperation(),data.getNumbers());
                 } catch (ArithmeticException err) {
@@ -71,7 +72,7 @@ public class User extends Thread{
                     }
                 }
 
-                data = new Data(Operation.SUB,new float[]{ret,0,0},status,session);
+                data = new Data(Operation.SUB,new int[]{ret,0,0},status,session);
                 System.out.println(address+" | S | Session: "+data.getSession()+" -- "+data.getStatus()+" "+data.getNumbers()[0]);
                 output.write(Package.pack(data));
             }

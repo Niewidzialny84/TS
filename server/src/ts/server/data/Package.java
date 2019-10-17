@@ -4,12 +4,13 @@ public class Package {
     public static byte[] pack(Data data) {
         byte[] tab = new byte[14];
 
-        float[] n = data.getNumbers();
+      /*  float[] n = data.getNumbers();
         int [] numbers = new int[3];
         for(int i =0;i<3;i++) {
             numbers[i] = Float.floatToIntBits(n[i]);
         }
-
+        */
+        int[] numbers = data.getNumbers();
         tab[0] = (byte)((data.getOperation().getByte()) << 6);
         tab[0] = (byte)(tab[0]|(numbers[0] >>> 26 ));
         tab[1] = (byte)(numbers[0] >>> 18);
@@ -41,13 +42,16 @@ public class Package {
         numbers[1] = (((data[4] & 0x3f) << 26)) | ((data[5] & 0xff)<< 18) | ((data[6]& 0xff) << 10) | ((data[7]& 0xff) << 2) | ((data[8] >>> 6) & 0x3);
         numbers[2] = ((data[8] & 0x3f) << 26) | ((data[9]& 0xff) << 18) | ((data[10] & 0xff)<< 10) | ((data[11]& 0xff) << 2) | ((data[12] >>> 6) & 0x3);
 
+        /*
         float[] n = new float[]{0,0,0};
         for(int i =0;i<3;i++) {
             n[i] = Float.intBitsToFloat(numbers[i]);
          //   System.out.println(Integer.toBinaryString(numbers[i]));
         }
         tmp.setNumbers(n);
+        */
 
+        tmp.setNumbers(numbers);
         tmp.setStatus(Status.getStatus(((byte)((data[12] >>> 2) & 0xf))));
         tmp.setSession((byte)(((data[12] << 4) & 0x30 ) | ((data[13] & 0b11110000) >>> 4)));
         return tmp;

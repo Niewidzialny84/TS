@@ -1,5 +1,7 @@
 package ts.client.GUI;
 
+import ts.client.Client;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -9,7 +11,7 @@ public class Menu extends JFrame {
     protected JTextField textField_1, textField_2, textField_3, textField_4;
     protected JButton button2, button3, button4, button5, button6;
     //protected JButton button1;
-    protected float number1, number2, number3, result;
+    protected int number1, number2, number3, result;
     protected Border blackline;
     protected Border emptyBorder;
     protected Font font = new Font("Britannic Bold", Font.PLAIN, 14);
@@ -22,9 +24,10 @@ public class Menu extends JFrame {
     JLabel line = new JLabel();
 
     public Menu(){
-        f = new JFrame("Button Example");
+        f = new JFrame("Web calculator --- session: "+ Client.session);
         blackline = BorderFactory.createLineBorder(Color.black);
         emptyBorder = BorderFactory.createEmptyBorder();
+        f.setResizable(false);
 
         ts.client.GUI.Action action = new Action(this);
 

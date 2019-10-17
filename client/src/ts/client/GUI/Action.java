@@ -24,7 +24,7 @@ public class Action implements ActionListener {
             @Override
             public void windowClosing(WindowEvent e) {
                 try {
-                    Client.output.write(Package.pack(new Data(Operation.ADD,new float[]{0,0,0},Status.CLOSING,Client.session)));
+                    Client.output.write(Package.pack(new Data(Operation.ADD,new int[]{0,0,0},Status.CLOSING,Client.session)));
                     Client.socket.setKeepAlive(false);
                     Client.output.close();
                     Client.input.close();
@@ -80,7 +80,7 @@ public class Action implements ActionListener {
 
     private void run(Operation operation) {
         try {
-            Data d = new Data(operation, new float[]{menu.number1, menu.number2, menu.number3}, Status.CORRECT, Client.session);
+            Data d = new Data(operation, new int[]{menu.number1, menu.number2, menu.number3}, Status.CORRECT, Client.session);
 
             System.out.println(Client.socket.getInetAddress()+" | S | Session: "+d.getSession()+" -- "+d.getStatus()+" "+d.getOperation()+" "+d.getNumbers()[0]+" "+d.getNumbers()[1]+" "+d.getNumbers()[2]);
             Client.output.write(Package.pack(d));
@@ -121,9 +121,9 @@ public class Action implements ActionListener {
 
     private boolean parse() {
         try {
-            menu.number1 = Float.parseFloat(menu.textField_1.getText());
-            menu.number2 = Float.parseFloat(menu.textField_2.getText());
-            menu.number3 = Float.parseFloat(menu.textField_3.getText());
+            menu.number1 = Integer.parseInt(menu.textField_1.getText());
+            menu.number2 = Integer.parseInt(menu.textField_2.getText());
+            menu.number3 = Integer.parseInt(menu.textField_3.getText());
             menu.input1.setText(""+menu.number1);
             menu.input2.setText(""+menu.number2);
             menu.input3.setText(""+menu.number3);

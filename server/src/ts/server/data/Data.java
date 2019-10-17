@@ -2,11 +2,11 @@ package ts.server.data;
 
 public class Data {
     private Operation operation;
-    private float[] numbers;
+    private int[] numbers;
     private Status status;
     private byte session;
 
-    public Data(Operation operation, float[] numbers, Status status, byte session) {
+    public Data(Operation operation, int[] numbers, Status status, byte session) {
         this.operation = operation;
         this.numbers = numbers;
         this.status = status;
@@ -14,7 +14,7 @@ public class Data {
     }
 
     public Data() {
-        this.numbers = new float[3];
+        this.numbers = new int[3];
     }
 
     public Operation getOperation() {
@@ -25,11 +25,11 @@ public class Data {
         this.operation = operation;
     }
 
-    public float[] getNumbers() {
+    public int[] getNumbers() {
         return numbers;
     }
 
-    public void setNumbers(float[] numbers) {
+    public void setNumbers(int[] numbers) {
         this.numbers = numbers;
     }
 
