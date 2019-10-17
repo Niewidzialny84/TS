@@ -30,8 +30,9 @@ Status:
 <ul>
 <li>CORRECT - 0000</li>
 <li>SESSION_KEY - 0001</li>
-<li>NUMBER_INFINITE 0011</li>
-<li>NUMBER_NAN 0100</li>
-<li>ERROR 0110</li>
-<li>CLOSING 0111</li>
+<li>NUMBER_INFINITE - 0011</li>
+<li>NUMBER_NAN - 0100</li>
+<li>NUMBER_DIV - 0101</li>
+<li>ERROR - 0110</li>
+<li>CLOSING - 0111</li>
 </ul>
