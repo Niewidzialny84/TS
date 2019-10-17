@@ -72,7 +72,7 @@ public class User extends Thread{
                     }
                 }
 
-                data = new Data(Operation.SUB,new int[]{ret,0,0},status,session);
+                data = new Data(data.getOperation(),new int[]{ret,0,0},status,session);
                 System.out.println(address+" | S | Session: "+data.getSession()+" -- "+data.getStatus()+" "+data.getNumbers()[0]);
                 output.write(Package.pack(data));
             }
