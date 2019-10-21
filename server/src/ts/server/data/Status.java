@@ -1,5 +1,6 @@
 package ts.server.data;
 
+//Status enum coded in bit format for easier test and check
 public enum Status {
     CORRECT((byte) 0b0000),
     SESSION_KEY((byte)0b0001),

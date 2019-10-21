@@ -1,11 +1,12 @@
 package ts.client.data;
 
+//Enum for the first to bits as operation
 public enum Operation {
-    ADD((byte)2),
-    SUB((byte)0),
-    DIV((byte)1),
-    MUL((byte)3),
-    ERR((byte)127);
+    ADD((byte)2), // 10
+    SUB((byte)0), // 00
+    DIV((byte)1), // 01
+    MUL((byte)3), // 11
+    ERR((byte)127); //Error only for internal use and validation
     private byte Byte;
     Operation(byte Byte) {
         this.Byte = Byte;
@@ -16,6 +17,7 @@ public enum Operation {
     }
     public void setByte(byte Byte) { this.Byte = Byte; }
 
+    //Check layer for Operation
     public static Operation getOperation(byte Byte) {
         switch (Byte) {
             case 0:

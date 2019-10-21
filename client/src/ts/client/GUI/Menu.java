@@ -7,21 +7,21 @@ import javax.swing.border.Border;
 import java.awt.*;
 
 public class Menu extends JFrame {
+    //Variables for creating a frame
     protected JFrame f;
     protected JTextField textField_1, textField_2, textField_3, textField_4;
     protected JButton button2, button3, button4, button5, button6;
-    //protected JButton button1;
     protected int number1, number2, number3, result;
     protected Border blackline;
     protected Border emptyBorder;
     protected Font font = new Font("Britannic Bold", Font.PLAIN, 14);
-    JLabel title = new JLabel();
-    JLabel input1 = new JLabel();
-    JLabel input2 = new JLabel();
-    JLabel input3 = new JLabel();
-    JLabel sign1 = new JLabel();
-    JLabel sign2 = new JLabel();
-    JLabel line = new JLabel();
+    protected JLabel title = new JLabel();
+    protected JLabel input1 = new JLabel();
+    protected JLabel input2 = new JLabel();
+    protected JLabel input3 = new JLabel();
+    protected JLabel sign1 = new JLabel();
+    protected JLabel sign2 = new JLabel();
+    protected JLabel line = new JLabel();
 
     public Menu(){
         f = new JFrame("Web calculator --- session: "+ Client.session);
@@ -29,6 +29,7 @@ public class Menu extends JFrame {
         emptyBorder = BorderFactory.createEmptyBorder();
         f.setResizable(false);
 
+        //create action class instance for later use
         ts.client.GUI.Action action = new Action(this);
 
         //enter name label
@@ -158,10 +159,6 @@ public class Menu extends JFrame {
         button6.setBorder(blackline);
         button6.setFont(font);
 
-
-
-        JPanel p = new JPanel();
-
         //add to frame
         f.add(labe1_1);
         f.add(textField_1);
@@ -174,10 +171,8 @@ public class Menu extends JFrame {
         f.add(button3);
         f.add(button5);
         f.add(button6);
-       // f.add(button1);
         f.add(labe1_4);
         f.add(textField_4);
-
         f.add(title);
         f.add(input1);
         f.add(input2);
@@ -185,7 +180,7 @@ public class Menu extends JFrame {
         f.add(sign1);
         f.add(sign2);
         f.add(line);
-        //f.add(p);
+
         f.setSize(330,400);
         f.setLayout(null);
         f.setVisible(true);

@@ -15,11 +15,14 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+//Action class implementing all the interface functionality
 public class Action implements ActionListener {
     private Menu menu;
     public static boolean exit = false;
+
     Action(Menu menu) {
         this.menu = menu;
+        //Closing listener which sends a message to server that client has disconnected
         menu.f.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -39,7 +42,9 @@ public class Action implements ActionListener {
         });
     }
 
+    //Core action listener
     public void actionPerformed(ActionEvent e){
+        //Add button
         if(e.getSource()==menu.button2){
             if(parse()) {
                 menu.sign1.setText("+");
@@ -48,6 +53,7 @@ public class Action implements ActionListener {
             }
         }
 
+        //Subtract button
         if(e.getSource() == menu.button3){
             if(parse()) {
                 menu.sign1.setText("-");
@@ -56,6 +62,7 @@ public class Action implements ActionListener {
             }
         }
 
+        //Divide button
         if(e.getSource() == menu.button4){
             if(parse()) {
                 parse();
@@ -65,6 +72,7 @@ public class Action implements ActionListener {
             }
         }
 
+        //Multiply button
         if(e.getSource() == menu.button5){
             if(parse()) {
                 menu.sign1.setText("*");
@@ -73,24 +81,28 @@ public class Action implements ActionListener {
             }
         }
 
+        //Clear button
         if(e.getSource() == menu.button6){
             cls();
         }
     }
 
+    //When correct button pressed sensing operation and package is send and recived
     private void run(Operation operation) {
         try {
+            //Data field for creating later package
             Data d = new Data(operation, new int[]{menu.number1, menu.number2, menu.number3}, Status.CORRECT, Client.session);
 
             System.out.println(Client.socket.getInetAddress()+" | S | Session: "+d.getSession()+" -- "+d.getStatus()+" "+d.getOperation()+" "+d.getNumbers()[0]+" "+d.getNumbers()[1]+" "+d.getNumbers()[2]);
-            Client.output.write(Package.pack(d));
+            Client.output.write(Package.pack(d)); //sending to client output which is connected to the server by socket
             byte[] bytes = new byte[14];
-            Client.input.read(bytes);
-            d = Package.unpack(bytes);
+            Client.input.read(bytes); // incoming response from server
+            d = Package.unpack(bytes); //unpacking the data
 
             System.out.println(Client.socket.getInetAddress()+" | R | Session: "+d.getSession()+" -- "+d.getStatus()+" "+d.getNumbers()[0] );
-            menu.result = d.getNumbers()[0];
+            menu.result = d.getNumbers()[0]; //setting an inside variable to answer from server
 
+            //checking the status and printing the result or error
             switch (d.getStatus()) {
                 case ERROR:
                     cls();
@@ -104,7 +116,7 @@ public class Action implements ActionListener {
                     cls();
                     menu.textField_4.setText("Overflow");
                     break;
-                case NUMBER_NAN:
+                case NUMBER_NAN: //leftover from float
                     cls();
                     menu.textField_4.setText("Not a number");
                     break;
@@ -119,6 +131,7 @@ public class Action implements ActionListener {
         }
     }
 
+    //parse function to get number from fields
     private boolean parse() {
         try {
             menu.number1 = Integer.parseInt(menu.textField_1.getText());
@@ -128,7 +141,7 @@ public class Action implements ActionListener {
             menu.input2.setText(""+menu.number2);
             menu.input3.setText(""+menu.number3);
             return true;
-        } catch (Exception e) {
+        } catch (Exception e) { //When parseInt fails - the number is not an integer
             System.out.println(Client.socket.getInetAddress()+" | E | Session: "+Client.session+" -- Client parse exception (Invalid numbers)");
             cls();
             menu.textField_4.setText("Wrong input");
@@ -136,6 +149,7 @@ public class Action implements ActionListener {
         }
     }
 
+    //clear all the fields and set all inside variables to 0
     private void cls() {
         menu.number1 = 0;
         menu.number2 = 0;

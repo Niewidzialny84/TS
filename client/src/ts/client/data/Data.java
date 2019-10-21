@@ -1,5 +1,6 @@
 package ts.client.data;
 
+//Data class for storage all of message data
 public class Data {
     private Operation operation;
     private int[] numbers;
@@ -17,6 +18,7 @@ public class Data {
         this.numbers = new int[3];
     }
 
+    //Getters and Setters
     public Operation getOperation() {
         return operation;
     }

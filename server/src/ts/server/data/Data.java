@@ -1,5 +1,6 @@
 package ts.server.data;
 
+//Data class for storage all of message data
 public class Data {
     private Operation operation;
     private int[] numbers;
